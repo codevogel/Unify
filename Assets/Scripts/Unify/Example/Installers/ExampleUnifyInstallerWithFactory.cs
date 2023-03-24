@@ -1,7 +1,7 @@
-﻿using Unify.Core.Factories;
+﻿using System;
+using Unify.Core.Factories;
 using Unify.Core.Installers;
 using Unify.Example.Behaviours;
-using Unify.Example.Factories;
 using UnityEngine;
 
 namespace Unify.Example.Installers
@@ -12,7 +12,8 @@ namespace Unify.Example.Installers
         
         public override void RegisterDependencies()
         {
-            LocalContainer.RegisterDependency<ExampleUnifyObjectFactory>(new ExampleUnifyObjectFactory());
+            var factory = new UnifyObjectFactory<FooBehaviour>();
+            LocalContainer.RegisterDependency<UnifyObjectFactory<FooBehaviour>>(factory);
             LocalContainer.RegisterDependency<ExampleUnifyBehaviourWithFactory>(new GameObject().AddComponent<ExampleUnifyBehaviourWithFactory>());  
         }
     }

@@ -1,9 +1,11 @@
-﻿namespace Unify.Core.Factories
+﻿using Unify.Core.Factories.ObjectBuilder;
+
+namespace Unify.Core.Factories
 {
     public interface IObjectFactory
     {
         void RegisterRootContainer(IUnifyContainer rootContainer);
         
-        T Create<T>(string name = default);
+        T CreateFromBuilder<T>(string name = default);
     }
 }

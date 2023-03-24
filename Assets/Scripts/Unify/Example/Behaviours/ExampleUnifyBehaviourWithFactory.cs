@@ -1,18 +1,16 @@
-using System;
 using Unify.Core;
 using Unify.Core.Attributes;
 using Unify.Core.Factories;
-using Unify.Example.Factories;
 using UnityEngine;
 
 namespace Unify.Example.Behaviours
 {
     public class ExampleUnifyBehaviourWithFactory : UnifyBehaviour
     {
-        private ExampleUnifyObjectFactory _objectFactory;
+        private UnifyObjectFactory<FooBehaviour> _objectFactory;
         
         [Inject]
-        public void Inject(ExampleUnifyObjectFactory objectFactory)
+        public void Inject(UnifyObjectFactory<FooBehaviour> objectFactory)
         {
             _objectFactory = objectFactory;
         }
@@ -21,7 +19,7 @@ namespace Unify.Example.Behaviours
         {
             if (!Input.GetKeyDown(KeyCode.Space)) return;
             
-            var foo = _objectFactory.Create<FooBehaviour>();
+            var foo = _objectFactory.CreateFromBuilder<FooBehaviour>();
             foo.DoSomething();
         }
     }
