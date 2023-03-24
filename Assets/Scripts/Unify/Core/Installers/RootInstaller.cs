@@ -23,7 +23,7 @@ namespace Unify.Core.Installers
             {
                 // Registers each installers' local dependencies, then register that container into the root container.
                 installer.RegisterDependencies();
-                Root.RegisterDependenciesFrom(installer.LocalContainer);
+                Root.RegisterDependenciesAndFactoriesFrom(installer.LocalContainer);
             }
         }
 

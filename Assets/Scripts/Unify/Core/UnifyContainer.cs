@@ -26,9 +26,10 @@ namespace Unify.Core
         }
 
 
-        public void RegisterDependenciesFrom(UnifyContainer monoInstallerLocalContainer)
+        public void RegisterDependenciesAndFactoriesFrom(UnifyContainer otherContainer)
         {
-            var dependenciesInOtherContainer = monoInstallerLocalContainer._localDependencies;
+            // Register dependencies
+            var dependenciesInOtherContainer = otherContainer._localDependencies;
             foreach (var dependencyObjectPair in dependenciesInOtherContainer)
             {
                 if (_localDependencies.ContainsKey(dependencyObjectPair.Key))
@@ -36,5 +37,6 @@ namespace Unify.Core
                 _localDependencies[dependencyObjectPair.Key] = dependencyObjectPair.Value;
             }
         }
+
     }
 }
