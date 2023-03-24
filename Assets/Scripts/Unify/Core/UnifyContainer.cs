@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Unify.Core
 {
-    public class UnifyContainer
+    public class UnifyContainer : IUnifyContainer
     {
         private Dictionary<UnifyDependency, object> _localDependencies = new ();
 
