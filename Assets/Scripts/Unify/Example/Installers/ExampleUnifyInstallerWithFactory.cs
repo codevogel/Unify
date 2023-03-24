@@ -12,8 +12,8 @@ namespace Unify.Example.Installers
         
         public override void RegisterDependencies()
         {
-            var factory = new UnifyObjectFactory<FooBehaviour>();
-            LocalContainer.RegisterDependency<UnifyObjectFactory<FooBehaviour>>(factory);
+            var factory = new FooObjectFactory();
+            LocalContainer.RegisterDependency<FooObjectFactory>(factory);
             LocalContainer.RegisterDependency<ExampleUnifyBehaviourWithFactory>(new GameObject().AddComponent<ExampleUnifyBehaviourWithFactory>());  
         }
     }

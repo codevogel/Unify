@@ -7,10 +7,10 @@ namespace Unify.Example.Behaviours
 {
     public class ExampleUnifyBehaviourWithFactory : UnifyBehaviour
     {
-        private UnifyObjectFactory<FooBehaviour> _objectFactory;
+        private FooObjectFactory _objectFactory;
         
         [Inject]
-        public void Inject(UnifyObjectFactory<FooBehaviour> objectFactory)
+        public void Inject(FooObjectFactory objectFactory)
         {
             _objectFactory = objectFactory;
         }
@@ -19,7 +19,7 @@ namespace Unify.Example.Behaviours
         {
             if (!Input.GetKeyDown(KeyCode.Space)) return;
             
-            var foo = _objectFactory.CreateFromBuilder<FooBehaviour>();
+            var foo = _objectFactory.CreateFromBuilder();
             foo.DoSomething();
         }
     }

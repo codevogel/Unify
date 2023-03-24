@@ -3,19 +3,14 @@ using Unify.Core.Factories.ObjectBuilder;
 
 namespace Unify.Core.Factories
 {
-    public class UnifyObjectFactory<TObject> : IObjectFactory
+    public abstract class UnifyObjectFactory<TObject> : IObjectFactory
     {
-        private IUnifyContainer _rootContainer;
+        protected IUnifyContainer _rootContainer;
         private readonly IObjectBuilder _objectBuilder;
 
-        public UnifyObjectFactory()
+        public UnifyObjectFactory(IObjectBuilder objectBuilder)
         {
-            _objectBuilder = new UnifyObjectBuilder(new []{ typeof(TObject)});
-        }
-        
-        public UnifyObjectFactory(Type[] parameters)
-        {
-            _objectBuilder = new UnifyObjectBuilder(parameters: parameters);
+            _objectBuilder = objectBuilder;
         }
         
         public void RegisterRootContainer(IUnifyContainer rootContainer)
@@ -23,7 +18,7 @@ namespace Unify.Core.Factories
             _rootContainer = rootContainer;
         }
 
-        public T CreateFromBuilder<T> (string name = default)
+        protected virtual T CreateFromBuilder<T> (string name = default)
         {
             return _objectBuilder.Build<T>(name);
         }
