@@ -1,7 +1,7 @@
 ﻿namespace Unify.Core.Factories.ObjectBuilder
 {
-    public interface IObjectBuilder
+    public interface IObjectBuilder<out TObject>
     {
-        T Build<T>(string name = default);
+        TObject Build(string name = default);
     }
 }

@@ -19,7 +19,7 @@ namespace Unify.Example.Behaviours
         {
             if (!Input.GetKeyDown(KeyCode.Space)) return;
             
-            var foo = _objectFactory.CreateFromBuilder();
+            var foo = _objectFactory.Create();
             foo.DoSomething();
         }
     }
