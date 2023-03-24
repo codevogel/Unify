@@ -57,7 +57,7 @@ namespace Unify.Core.Installers
                     var dependencies = new object[parameters.Length];
 
                     // Invoke the method with the resolved dependencies
-                    for (int i = 0; i < parameters.Length; i++)
+                    for (var i = 0; i < parameters.Length; i++)
                     {
                         var param = parameters[i];
                         var paramAttributes = param.GetCustomAttributes(typeof(InjectWithIdAttribute)).ToArray();
