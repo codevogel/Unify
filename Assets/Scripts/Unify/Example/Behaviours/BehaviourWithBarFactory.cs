@@ -31,14 +31,14 @@ namespace Unify.Example.Behaviours
         
         private void CreateAnInstanceOfBar()
         {
-            _factory.Create("An instantiated Bar");
+            _factory.Create(name: "An instantiated Bar");
         }
         
         private void CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction()
         {
             _factory.Create(
-                bar => Debug.Log($"A custom override action for {bar} just occurred before bar's start function."),
-                "An instantiated Bar With a Custom Action"
+                afterInstantiationOverride: bar => Debug.Log($"A custom override action for {bar} just occurred before bar's start function."),
+                name: "An instantiated Bar With a Custom Action"
             );
         }
 
@@ -49,9 +49,9 @@ namespace Unify.Example.Behaviours
             var customStringOverride = new DependencyOverride("withCustomString", customParametersWeWantToPass);
             
             _factory.Create(
-                customStringOverride,
-                "An instantiated Bar with a custom string parameter defined at runtime"
-                );
+                dependencyOverride: customStringOverride,
+                name: "An instantiated Bar with a custom string parameter defined at runtime"
+            );
         }
 
 
