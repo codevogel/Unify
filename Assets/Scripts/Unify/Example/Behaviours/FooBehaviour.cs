@@ -1,25 +1,21 @@
 ﻿using Unify.Core;
-using Unify.Core.Attributes;
 using UnityEngine;
 
 namespace Unify.Example.Behaviours
 {
+    /// <summary>
+    /// A simple UnifyBehaviour that has no dependencies.
+    /// </summary>
     public class FooBehaviour : UnifyBehaviour
     {
-
-        private string _someDependency;
-        
-        [Inject]
-        public void Inject(string someDependency)
+        private void Start()
         {
-            _someDependency = someDependency;
+            DoSomething();
         }
-        
+
         public void DoSomething()
         {
-            Debug.Log($"I am doing something in FooBehaviour with someDependency: {_someDependency}!");
+            Debug.Log($"FooBehaviour just did something from gameObject with name {gameObject.name}");
         }
-
-
     }
 }
