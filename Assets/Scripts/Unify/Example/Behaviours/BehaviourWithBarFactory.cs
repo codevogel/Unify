@@ -22,16 +22,40 @@ namespace Unify.Example.Behaviours
         void OnGUI()
         {
             if (GUILayout.Button("Create Bar from Factory"))
-                _factory.Create("An instantiated Bar");
-            if (GUILayout.Button("Create Bar from Factory with custom action override"))
-                _factory.Create(
-                    bar => Debug.Log($"A custom override action for {bar} just occurred before bar's start function."),
-                    "An instantiated Bar With a Custom Action"
-                    );
-            if (GUILayout.Button("Create Bar from Factory with custom parameter override"))
-                _factory.Create(
-                    "An instantiated Bar with a custom string parameter defined at runtime",
-                    new DependencyOverride("withCustomString",new object[]{ $"someCustomString{_numStrings++}"}));
+                CreateAnInstanceOfBar();
+            if (GUILayout.Button("Create Bar from Factory with custom action override")) 
+                CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction();
+            if (GUILayout.Button("Create Bar from Factory with custom parameter override")) 
+                CreateAnInstanceOfBarWithAnOverrideInjection();
         }
+        
+        private void CreateAnInstanceOfBar()
+        {
+            _factory.Create("An instantiated Bar");
+        }
+        
+        private void CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction()
+        {
+            _factory.Create(
+                bar => Debug.Log($"A custom override action for {bar} just occurred before bar's start function."),
+                "An instantiated Bar With a Custom Action"
+            );
+        }
+
+        private void CreateAnInstanceOfBarWithAnOverrideInjection()
+        {
+            // Create a custom dependency override using the [FactoryOverride] method in `BarDependencyFactory` with id `withCustomString`
+            var customParametersWeWantToPass = new object[] { $"someCustomString{_numStrings++}" };
+            var customStringOverride = new DependencyOverride("withCustomString", customParametersWeWantToPass);
+            
+            _factory.Create(
+                customStringOverride,
+                "An instantiated Bar with a custom string parameter defined at runtime"
+                );
+        }
+
+
+
+
     }
 }
