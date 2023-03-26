@@ -24,13 +24,6 @@ namespace Unify.Example.Installers
             // Create a BarBehaviour that has it's own dependencies
             var barBehaviour = new GameObject("BarBehaviourWithDependency").AddComponent<BarBehaviour>();
             LocalContainer.RegisterDependency<BarBehaviour>(barBehaviour);
-            
-            // Register a factory that instantiates BarBehaviours
-            LocalContainer.RegisterDependency<BarDependencyFactory>(new BarDependencyFactory());
-            
-            // Register the behaviour that contains the BarDependencyFactory
-            var behaviourWithBarFactory = new GameObject("BehaviourWithBarFactory").AddComponent<BehaviourWithBarFactory>();
-            LocalContainer.RegisterDependency<BehaviourWithBarFactory>(behaviourWithBarFactory);
         }
     }
 }
