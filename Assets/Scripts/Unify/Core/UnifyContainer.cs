@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unify.Core.Builders.DependencyBuilder;
 using Unify.Core.Factories;
 
 namespace Unify.Core
@@ -8,12 +9,9 @@ namespace Unify.Core
     {
         private Dictionary<UnifyDependency, object> _localDependencies = new ();
 
-        public void RegisterDependency<T>(object instance, string id = default)
+        public UnifyDependencyBuilder<TDependency> RegisterDependency<TDependency>()
         {
-            var dependency = new UnifyDependency(typeof(T), id);
-            if (_localDependencies.ContainsKey(dependency))
-                throw new Exception("Already contains a dependency with the same key!");
-            _localDependencies[dependency] = instance;
+            return new UnifyDependencyBuilder<TDependency>(_localDependencies);
         }
 
         public object ResolveDependency(Type type, string id = default)

@@ -12,5 +12,10 @@ namespace Unify.Core
             Type = type;
             ID = id;
         }
+
+        public override string ToString()
+        {
+            return $"type: {Type.ToString()} id: {ID}";
+        }
     }
 }
