@@ -11,18 +11,18 @@ namespace Unify.Example.Installers
         public override void RegisterDependencies()
         {
             // Register a string instance from the inspector
-            LocalContainer.RegisterDependency<string>().FromInstance(someStringDependency);
+            LocalContainer.DefineDependency<string>().FromInstance(someStringDependency).Register();
 
             // Register a FooBehaviour instance from the inspector with id "fromHierarchy"
-            LocalContainer.RegisterDependency<FooBehaviour>().FromInstance(fooBehaviourInHierarchy).WithId("fromHierarchy");
+            LocalContainer.DefineDependency<FooBehaviour>().FromInstance(fooBehaviourInHierarchy).WithId("fromHierarchy").Register();
 
             // Create FooBehaviour from installer and register it with id "fromCode" 
             var fooBehaviourFromCode = new GameObject("FooBehaviour From Code").AddComponent<FooBehaviour>();
-            LocalContainer.RegisterDependency<FooBehaviour>().FromInstance(fooBehaviourFromCode).WithId("fromCode");
+            LocalContainer.DefineDependency<FooBehaviour>().FromInstance(fooBehaviourFromCode).WithId("fromCode").Register();
             
             // Create a BarBehaviour that has it's own dependencies
             var barBehaviour = new GameObject("BarBehaviourWithDependency").AddComponent<BarBehaviour>();
-            LocalContainer.RegisterDependency<BarBehaviour>().FromInstance(barBehaviour);
+            LocalContainer.DefineDependency<BarBehaviour>().FromInstance(barBehaviour).Register();
         }
     }
 }

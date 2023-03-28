@@ -5,7 +5,7 @@ namespace Unify.Core
 {
     public interface IUnifyContainer
     {
-        UnifyDependencyBuilder<TDependency> RegisterDependency<TDependency>();
+        UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>();
         object ResolveDependency(Type type, string id = default);
     }
 }

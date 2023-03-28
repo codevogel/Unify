@@ -7,5 +7,6 @@ namespace Unify.Core.Builders.DependencyBuilder
         public IDependencyBuilder<TDependency> FromInstance(TDependency instance);
 
         public IDependencyBuilder<TDependency> WithId(string id);
+        void Register();
     }
 }

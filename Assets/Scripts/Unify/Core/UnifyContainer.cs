@@ -9,7 +9,7 @@ namespace Unify.Core
     {
         private Dictionary<UnifyDependency, object> _localDependencies = new ();
 
-        public UnifyDependencyBuilder<TDependency> RegisterDependency<TDependency>()
+        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>()
         {
             return new UnifyDependencyBuilder<TDependency>(_localDependencies);
         }
