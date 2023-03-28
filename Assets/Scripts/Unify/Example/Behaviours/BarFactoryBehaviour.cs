@@ -1,6 +1,8 @@
 ﻿using Unify.Core;
 using Unify.Core.Attributes;
 using Unify.Example.Factories;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 namespace Unify.Example.Behaviours
@@ -17,16 +19,6 @@ namespace Unify.Example.Behaviours
         public void Inject(BarBehaviourFactory factory)
         {
             _factory = factory;
-        }
-
-        void OnGUI()
-        {
-            if (GUILayout.Button("Create Bar from Factory"))
-                CreateAnInstanceOfBar();
-            if (GUILayout.Button("Create Bar from Factory with custom action override")) 
-                CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction();
-            if (GUILayout.Button("Create Bar from Factory with custom parameter override")) 
-                CreateAnInstanceOfBarWithAnOverrideInjection();
         }
         
         private void CreateAnInstanceOfBar()
@@ -54,8 +46,18 @@ namespace Unify.Example.Behaviours
             );
         }
 
-
-
+        void OnGUI()
+        {
+            if (Selection.activeGameObject != this.GameObject()) return;
+            
+            if (GUILayout.Button("Create a new Bar from the factory"))
+                CreateAnInstanceOfBar();
+            if (GUILayout.Button("Create a new Bar from Factory with a custom action override")) 
+                CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction();
+            if (GUILayout.Button("Create a new Bar from Factory with custom parameter override")) 
+                CreateAnInstanceOfBarWithAnOverrideInjection();
+        }
+        
 
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Unify.Core;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 namespace Unify.Example.Behaviours
@@ -11,6 +13,14 @@ namespace Unify.Example.Behaviours
         public void DoSomething()
         {
             Debug.Log($"FooBehaviour just did something from gameObject with name {gameObject.name}");
+        }
+
+        private void OnGUI()
+        {
+            if (Selection.activeGameObject != this.GameObject()) return;
+            
+            if (GUILayout.Button("Call DoSomething on this FooBehaviour"))
+                DoSomething();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Unify.Core;
 using Unify.Core.Attributes;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 namespace Unify.Example.Behaviours
@@ -27,12 +29,20 @@ namespace Unify.Example.Behaviours
             _theFooBehaviourFromHierarchy = fooBehaviourFromHierarchy;
         }
 
-        private void Start()
+        private void OnGUI()
         {
-            Debug.Log("BarBehaviourWithDependencies has access to: " + SomeStringDependency);
-            Debug.Log("BarBehaviourWithDependencies will now do something on: " + _theFooBehaviourFromCode);
+            if (Selection.activeGameObject != this.GameObject()) return;
+            
+            if (GUILayout.Button("Call DoSomething on this BarBehaviour"))
+                DoSomething();
+        }
+
+        private void DoSomething()
+        {
+            Debug.Log("BarBehaviour has access to: " + SomeStringDependency);
+            Debug.Log("BarBehaviour will now do something on: " + _theFooBehaviourFromCode);
             _theFooBehaviourFromCode.DoSomething();
-            Debug.Log("BarBehaviourWithDependencies will now do something on: " + _theFooBehaviourFromHierarchy);
+            Debug.Log("BarBehaviour will now do something on: " + _theFooBehaviourFromHierarchy);
             _theFooBehaviourFromHierarchy.DoSomething();
         }
     }

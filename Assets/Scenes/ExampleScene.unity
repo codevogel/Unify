@@ -464,5 +464,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91259c7241340ad8740a8784a9c0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fooBehaviourInHierarchy: {fileID: 1945132404}
-  someStringDependency: Hello world!
+  FooBehaviourInHierarchy: {fileID: 1945132404}
+  SomeStringDependency: Hello world!
