@@ -8,13 +8,13 @@ namespace Unify.Example.Behaviours
     /// <summary>
     /// A UnifyBehaviour that creates BarBehaviours using a factory.
     /// </summary>
-    public class BehaviourWithBarFactory : UnifyBehaviour
+    public class BarFactoryBehaviour : UnifyBehaviour
     {
-        private BarDependencyFactory _factory;
+        private BarBehaviourFactory _factory;
         private int _numStrings = 0;
 
         [Inject]
-        public void Inject(BarDependencyFactory factory)
+        public void Inject(BarBehaviourFactory factory)
         {
             _factory = factory;
         }

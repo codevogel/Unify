@@ -19,12 +19,12 @@ namespace Unify.Example.Behaviours
         [Inject]
         public void Inject(
             string someStringDependency, 
-            [InjectWithId("fromCode")] FooBehaviour fooFromCode, 
-            [InjectWithId("fromHierarchy")] FooBehaviour fooFromHierarchy)
+            [InjectWithId("fromCode")] FooBehaviour fooBehaviourFromCode, 
+            [InjectWithId("fromHierarchy")] FooBehaviour fooBehaviourFromHierarchy)
         {
             SomeStringDependency = someStringDependency;
-            _theFooBehaviourFromCode = fooFromCode;
-            _theFooBehaviourFromHierarchy = fooFromHierarchy;
+            _theFooBehaviourFromCode = fooBehaviourFromCode;
+            _theFooBehaviourFromHierarchy = fooBehaviourFromHierarchy;
         }
 
         private void Start()

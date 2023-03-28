@@ -4,7 +4,7 @@ using Unify.Example.Behaviours;
 
 namespace Unify.Example.Factories
 {
-    public class BarDependencyFactory : BaseUnifyObjectFactory<BarBehaviour>
+    public class BarBehaviourFactory : BaseUnifyObjectFactory<BarBehaviour>
     {
         // Manually implementation of injecting the dependencies are required for factories.
         protected override void InjectDependenciesInto(BarBehaviour o)

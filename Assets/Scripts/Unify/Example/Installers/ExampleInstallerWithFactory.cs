@@ -10,11 +10,11 @@ namespace Unify.Example.Installers
         public override void RegisterDependencies()
         {
             // Register a factory that instantiates BarBehaviours
-            DefineDependency<BarDependencyFactory>().FromInstance(new BarDependencyFactory()).Register();
+            DefineDependency<BarBehaviourFactory>().FromInstance(new BarBehaviourFactory()).Register();
             
             // Register the behaviour that contains the BarDependencyFactory
-            var behaviourWithBarFactory = new GameObject("BehaviourWithBarFactory").AddComponent<BehaviourWithBarFactory>();
-            DefineDependency<BehaviourWithBarFactory>().FromInstance(behaviourWithBarFactory).Register();
+            var behaviourWithBarFactory = new GameObject("BehaviourWithBarFactory").AddComponent<BarFactoryBehaviour>();
+            DefineDependency<BarFactoryBehaviour>().FromInstance(behaviourWithBarFactory).Register();
         }
     }
 }
