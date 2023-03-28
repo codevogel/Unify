@@ -27,7 +27,7 @@ namespace Unify.Example.Behaviours
 
         private void DoSomething()
         {
-            Debug.Log("About to do something with IBaz");
+            Debug.Log($"DoSomething just happened on QuxBehaviour with name {gameObject.name}");
             _bazThroughInterface.DoSomethingOnAnInterface();
         }
     }

@@ -9,7 +9,7 @@ namespace Unify.Example.Behaviours
     {
         public void DoSomethingOnAnInterface()
         {
-            Debug.Log("DoSomethingOnAnInterface just happened on BazBehaviour");
+            Debug.Log($"Doing something on BazBehaviour with name {gameObject.name}!");
         }
         
         private void OnGUI()

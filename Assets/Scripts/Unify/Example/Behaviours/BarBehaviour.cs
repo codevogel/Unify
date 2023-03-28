@@ -39,6 +39,7 @@ namespace Unify.Example.Behaviours
 
         private void DoSomething()
         {
+            Debug.Log($"Doing something on BarBehaviour with name {gameObject.name}!");
             Debug.Log("BarBehaviour has access to: " + SomeStringDependency);
             Debug.Log("BarBehaviour will now do something on: " + _theFooBehaviourFromCode);
             _theFooBehaviourFromCode.DoSomething();
