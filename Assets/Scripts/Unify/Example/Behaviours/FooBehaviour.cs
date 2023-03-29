@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Unify.Example.Behaviours
 {
     /// <summary>
-    /// A simple UnifyBehaviour that has no dependencies.
+    /// The FooBehaviour is the simplest example of a UnifyBehaviour: it has no dependencies.
     /// </summary>
     public class FooBehaviour : UnifyBehaviour
     {

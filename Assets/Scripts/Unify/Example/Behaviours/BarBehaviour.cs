@@ -7,9 +7,10 @@ using UnityEngine;
 namespace Unify.Example.Behaviours
 {
     /// <summary>
-    /// A UnifyBehaviour that has dependencies on other UnifyBehaviours. In this case, it depends on:
+    /// The BarBehaviour is an example UnifyBehaviour that has dependencies on other UnifyBehaviours.
+    /// In this case, it depends on:
     ///  - a global string dependency
-    ///  - two different instances of FooBehaviour
+    ///  - two different instances of FooBehaviour (each passed with a unique ID)
     /// </summary>
     public class BarBehaviour : UnifyBehaviour
     {

@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Unify.Example.Installers
 {
+    /// <summary>
+    /// The ExampleInstallerWithInterfaces is an example implementation of the BaseUnifyInstaller.
+    /// In this example we create an instance of BazBehaviour which implements IBaz, and then
+    /// register a dependency of type IBaz using the BazBehaviour instance.
+    /// We then create and register a QuxBehaviour (which depends on an implementation of IBaz). 
+    /// </summary>
     public class ExampleInstallerWithInterfaces : BaseUnifyInstaller
     {
         public override void RegisterDependencies()

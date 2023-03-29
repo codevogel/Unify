@@ -4,15 +4,19 @@ using Unify.Example.Behaviours;
 
 namespace Unify.Example.Factories
 {
+    /// <summary>
+    /// The BarBehaviourFactory is an example implementation of the BaseUnifyObjectFactory that manually
+    /// injects the needed dependencies for BarBehaviour.
+    /// </summary>
     public class BarBehaviourFactory : BaseUnifyObjectFactory<BarBehaviour>
     {
-        // Manually implementation of injecting the dependencies are required for factories.
+        // Manual implementation of injecting the dependencies are required for factories.
         protected override void InjectDependenciesInto(BarBehaviour o)
         {
             o.Inject(
-                (string) RootContainer.ResolveDependency(typeof(string)),
-                (FooBehaviour) RootContainer.ResolveDependency(typeof(FooBehaviour), "fromCode"), 
-                (FooBehaviour) RootContainer.ResolveDependency(typeof(FooBehaviour), "fromHierarchy")
+                ResolveFromContainer<string>(),
+                ResolveFromContainer<FooBehaviour>("fromCode"), 
+                ResolveFromContainer<FooBehaviour>("fromHierarchy")
             );
         }
         
@@ -22,8 +26,8 @@ namespace Unify.Example.Factories
         {
             o.Inject(
                 customString,
-                (FooBehaviour) RootContainer.ResolveDependency(typeof(FooBehaviour), "fromCode"), 
-                (FooBehaviour) RootContainer.ResolveDependency(typeof(FooBehaviour), "fromHierarchy")
+                ResolveFromContainer<FooBehaviour>("fromCode"), 
+                ResolveFromContainer<FooBehaviour>("fromHierarchy")
             );
         }
     }

@@ -40,7 +40,16 @@ namespace Unify.Core.Factories
         /// <param name="o">The object to inject dependencies into.</param>
         protected abstract void InjectDependenciesInto(TObject o);
 
-
+        /// <summary>
+        /// Attempts to resolve an object of type TDependency from the root container.
+        /// </summary>
+        /// <param name="id">The id of the dependency that needs to be resolved.</param>
+        /// <typeparam name="TDependency">The type of the dependency that needs to be resolved.</typeparam>
+        /// <returns>An object of type TDependency from the root container.</returns>
+        protected TDependency ResolveFromContainer<TDependency>(string id = default)
+        {
+            return (TDependency) RootContainer.ResolveDependency(typeof(TDependency), id);
+        }
 
         
         public TObject Create(

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Unify.Example.Behaviours
 {
+    /// <summary>
+    /// The BazBehaviour is an example UnifyBehaviour that implements the example IBaz interface.
+    /// </summary>
     public class BazBehaviour : UnifyBehaviour, IBaz
     {
         public void DoSomethingOnAnInterface()

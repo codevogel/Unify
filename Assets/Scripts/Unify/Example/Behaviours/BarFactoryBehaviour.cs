@@ -8,7 +8,12 @@ using UnityEngine;
 namespace Unify.Example.Behaviours
 {
     /// <summary>
-    /// A UnifyBehaviour that creates BarBehaviours using a factory.
+    /// The BarFactoryBehaviour is an example UnifyBehaviour that has a factory that produces BarBehaviours in runtime.
+    /// It creates instances of bar and automatically resolve its dependencies using it's Inject function.
+    /// It is also possible to:
+    /// - perform some custom logic after creation
+    /// - manually override the Inject function, injecting dynamic dependencies at runtime.
+    ///   (for example, when each instantiated behaviour needs a custom name or parent transform)
     /// </summary>
     public class BarFactoryBehaviour : UnifyBehaviour
     {
@@ -23,7 +28,7 @@ namespace Unify.Example.Behaviours
         
         private void CreateAnInstanceOfBar()
         {
-            _factory.Create(name: "An instantiated Bar");
+            _factory.Create(name: "An instantiated Bar"); // name is optional
         }
         
         private void CreateAnInstanceOfBarWithSomeCustomLogicBeforeItsStartFunction()
@@ -46,7 +51,7 @@ namespace Unify.Example.Behaviours
             );
         }
 
-        void OnGUI()
+        private void OnGUI()
         {
             if (Selection.activeGameObject != this.GameObject()) return;
             

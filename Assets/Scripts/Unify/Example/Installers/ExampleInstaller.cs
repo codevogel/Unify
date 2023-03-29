@@ -4,6 +4,14 @@ using UnityEngine;
 
 namespace Unify.Example.Installers
 {
+    /// <summary>
+    /// The ExampleInstallerWithFactory is an example implementation of the BaseUnifyInstaller.
+    /// In this example we do a couple of things:
+    /// - We register a string dependency instance from the inspector field exposed on this installer.
+    /// - We register a FooBehaviour that already existed in the hierarchy and was linked from the inspector with an id "fromHierarchy".
+    /// - We instantiate and then register a FooBehaviour with an id "fromCode".
+    /// - We then create and register a QuxBehaviour (which depends on a string, and two unique implementations of FooBehaviour). 
+    /// </summary>
     public class ExampleInstaller : BaseUnifyInstaller
     {
         public FooBehaviour FooBehaviourInHierarchy;
@@ -20,7 +28,7 @@ namespace Unify.Example.Installers
             var fooBehaviourFromCode = new GameObject("FooBehaviour From Code").AddComponent<FooBehaviour>();
             LocalContainer.DefineDependency<FooBehaviour>().FromInstance(fooBehaviourFromCode).WithId("fromCode").Register();
             
-            // Create a BarBehaviour that has it's own dependencies
+            // Create a BarBehaviour that has it's own dependencies (we've registered it's dependencies above)
             var barBehaviour = new GameObject("BarBehaviourWithDependency").AddComponent<BarBehaviour>();
             LocalContainer.DefineDependency<BarBehaviour>().FromInstance(barBehaviour).Register();
         }

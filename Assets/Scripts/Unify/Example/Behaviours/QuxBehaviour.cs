@@ -1,5 +1,4 @@
-﻿using System;
-using Unify.Core;
+﻿using Unify.Core;
 using Unify.Core.Attributes;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -7,6 +6,9 @@ using UnityEngine;
 
 namespace Unify.Example.Behaviours
 {
+    /// <summary>
+    /// The QuxBehaviour is an example UnifyBehaviour that depends on an implementation of IBaz.
+    /// </summary>
     public class QuxBehaviour : UnifyBehaviour
     {
         private IBaz _bazThroughInterface;
