@@ -12,7 +12,7 @@ namespace Unify.Example.Installers
     /// - We instantiate and then register a FooBehaviour with an id "fromCode".
     /// - We then create and register a QuxBehaviour (which depends on a string, and two unique implementations of FooBehaviour). 
     /// </summary>
-    public class ExampleInstaller : BaseUnifyInstaller
+    public class ExampleInstaller : UnifyMonoInstaller
     {
         public FooBehaviour FooBehaviourInHierarchy;
         public string SomeStringDependency;

@@ -1,10 +1,15 @@
-using UnityEngine;
+using Unify.Core.Builders.DependencyBuilder;
 
 namespace Unify.Core.Installers
 {
     /// The UnifyInstaller class provides the base template for a UnifyInstaller. 
-    public abstract class UnifyInstaller : MonoBehaviour, IUnifyInstaller
+    public abstract class UnifyInstaller : IUnifyInstaller
     {
+        public UnifyContainer LocalContainer { get; } = new UnifyContainer();
         public abstract void RegisterDependencies();
+        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>()
+        {
+            return LocalContainer.DefineDependency<TDependency>();
+        }
     }
 }

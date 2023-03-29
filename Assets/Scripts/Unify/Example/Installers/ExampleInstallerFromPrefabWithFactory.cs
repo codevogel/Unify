@@ -8,7 +8,7 @@ namespace Unify.Example.Installers
     /// The ExampleInstallerWithFactory is an example implementation of the BaseUnifyInstaller.
     /// In this example, a BarBehaviourFactory and BarFactoryBehaviour are created and registered.
     /// </summary>
-    public class ExampleInstallerFromPrefabWithFactory : BaseUnifyInstaller
+    public class ExampleInstallerFromPrefabWithFactory : UnifyMonoInstaller
     {
 
         public BarFactoryBehaviour BarFactoryBehaviourPrefab;

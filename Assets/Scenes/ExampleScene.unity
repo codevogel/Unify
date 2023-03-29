@@ -251,7 +251,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 558570958}
-  - component: {fileID: 558570959}
   m_Layer: 0
   m_Name: Example Installer With Interfaces
   m_TagString: Untagged
@@ -274,18 +273,6 @@ Transform:
   m_Father: {fileID: 472807649}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &558570959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558570957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1cefedab553454f94be4f6cdcfa98d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &757150650
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,10 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de09b6c0bc794eebaebb494a157302a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Installers:
-  - {fileID: 2103549560}
-  - {fileID: 906391439}
-  - {fileID: 558570959}
 --- !u!1 &906391437
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +326,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906391438}
-  - component: {fileID: 906391439}
   m_Layer: 0
   m_Name: Example Installer From Prefab With Factory
   m_TagString: Untagged
@@ -366,19 +348,6 @@ Transform:
   m_Father: {fileID: 472807649}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &906391439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906391437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7615655df0264cf48bd9a8ed3e5aee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BarFactoryBehaviourPrefab: {fileID: 4900946659362910135, guid: b59a9e09c91dc344ba0c192a3ce6b16e, type: 3}
 --- !u!1 &1945132402
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +401,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2103549559}
-  - component: {fileID: 2103549560}
   m_Layer: 0
   m_Name: Example Installer
   m_TagString: Untagged
@@ -455,17 +423,3 @@ Transform:
   m_Father: {fileID: 472807649}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2103549560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103549558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b91259c7241340ad8740a8784a9c0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FooBehaviourInHierarchy: {fileID: 1945132404}
-  SomeStringDependency: Hello world!

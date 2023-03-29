@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Unify.Core.Attributes;
+using UnityEngine;
 
 namespace Unify.Core.Installers
 {
     /// The RootInstaller contains the UnifyContainer that all other UnifyContainers will resolve into.
     /// In our project, we will use only a single instance of the RootInstaller.
     /// We can't make this installer static however, since it needs to inherit from MonoBehaviour.
-    public class RootInstaller : UnifyInstaller
+    [DefaultExecutionOrder(-1)]
+    public class RootInstaller : UnifyMonoInstaller
     {
-        protected static UnifyContainer Root = new UnifyContainer();
+        private UnifyContainer Root => LocalContainer;
 
         // Keeps track of a list of all BaseDependencyInstallers that need to be installed into the root container.
         // We can assign these through the Unity Inspector.
-        public List<BaseUnifyInstaller> Installers;
+        public List<UnifyMonoInstaller> Installers;
 
         public override void RegisterDependencies()
         {

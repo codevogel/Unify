@@ -10,7 +10,7 @@ namespace Unify.Example.Installers
     /// register a dependency of type IBaz using the BazBehaviour instance.
     /// We then create and register a QuxBehaviour (which depends on an implementation of IBaz). 
     /// </summary>
-    public class ExampleInstallerWithInterfaces : BaseUnifyInstaller
+    public class ExampleInstallerWithInterfaces : UnifyMonoInstaller
     {
 
         public override void RegisterDependencies()

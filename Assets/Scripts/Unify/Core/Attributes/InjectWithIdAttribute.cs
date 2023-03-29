@@ -2,7 +2,7 @@ using System;
 
 namespace Unify.Core.Attributes
 {
-    internal class InjectWithIdAttribute : Attribute
+    public class InjectWithIdAttribute : Attribute
     {
         public readonly string ID;
 
