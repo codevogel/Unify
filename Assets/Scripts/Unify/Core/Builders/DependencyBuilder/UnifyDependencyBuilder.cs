@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Unify.Core.Builders.DependencyBuilder
 {
@@ -18,9 +21,38 @@ namespace Unify.Core.Builders.DependencyBuilder
         {
             _dependencies = dependencies;
         }
+        
+        public IDependencyBuilder<TDependency> FromPrefab(GameObject dependencyOnAPrefab)
+        {
+            if (_fromInstanceSatisfied)
+                throw new Exception(
+                    "Called FromPrefab when an instance already exists in this DefineDependency chain.");
+            _instance = Object.Instantiate(dependencyOnAPrefab).GetComponent<TDependency>();
+            if (_instance == null)
+                throw new Exception(
+                    $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");
+            _fromInstanceSatisfied = true;
+            return this;
+        }
+        
+        public IDependencyBuilder<TDependency> FromPrefab(string prefabResourcePath)
+        {
+            if (_fromInstanceSatisfied)
+                throw new Exception(
+                    "Called FromPrefab when an instance already exists in this DefineDependency chain.");
+            _instance = Object.Instantiate(Resources.Load(prefabResourcePath)).GetComponent<TDependency>();
+            if (_instance == null)
+                throw new Exception(
+                    $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");
+            _fromInstanceSatisfied = true;
+            return this;
+        }
 
         public IDependencyBuilder<TDependency> FromInstance(TDependency instance)
         {
+            if (_fromInstanceSatisfied)
+                throw new Exception(
+                    "Called FromInstance when an instance already exists in this DefineDependency chain.");
             _instance = instance;
             _fromInstanceSatisfied = true;
             return this;
@@ -37,7 +69,7 @@ namespace Unify.Core.Builders.DependencyBuilder
             _registerWasCalled = true;
             
             if (!_fromInstanceSatisfied)
-                throw new Exception("Missing a call to FromInstance: A dependency builder received an attempt to Register before an instance was bound.");
+                throw new Exception("Missing an instance: A dependency builder received an attempt to Register before an instance was bound.");
             
             var dependency = new UnifyDependency(typeof(TDependency), _id);
             if (_dependencies.ContainsKey(dependency))

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cefedab553454f94be4f6cdcfa98d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fooBehaviourOnAPrefab: {fileID: 822404507851009613, guid: dce9b52c4cb0e8f4d95f2f36aecd2dda, type: 3}
 --- !u!1 &757150650
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Installers:
   - {fileID: 2103549560}
-  - {fileID: 906391439}
+  - {fileID: 0}
   - {fileID: 558570959}
 --- !u!1 &906391437
 GameObject:
@@ -345,7 +346,7 @@ GameObject:
   - component: {fileID: 906391438}
   - component: {fileID: 906391439}
   m_Layer: 0
-  m_Name: Example Installer With Factory
+  m_Name: Example Installer From Prefab With Factory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
