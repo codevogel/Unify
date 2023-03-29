@@ -1,5 +1,4 @@
 ﻿using Unify.Core;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace Unify.Example.Behaviours
 
         private void OnGUI()
         {
-            if (Selection.activeGameObject != this.GameObject()) return;
+            if (Selection.activeGameObject != this.gameObject) return;
             
             if (GUILayout.Button("Call DoSomething on this FooBehaviour"))
                 DoSomething();

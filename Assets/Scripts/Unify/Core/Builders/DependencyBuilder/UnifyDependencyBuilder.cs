@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -28,19 +27,6 @@ namespace Unify.Core.Builders.DependencyBuilder
                 throw new Exception(
                     "Called FromPrefab when an instance already exists in this DefineDependency chain.");
             _instance = Object.Instantiate(dependencyOnAPrefab).GetComponent<TDependency>();
-            if (_instance == null)
-                throw new Exception(
-                    $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");
-            _fromInstanceSatisfied = true;
-            return this;
-        }
-        
-        public IDependencyBuilder<TDependency> FromPrefab(string prefabResourcePath)
-        {
-            if (_fromInstanceSatisfied)
-                throw new Exception(
-                    "Called FromPrefab when an instance already exists in this DefineDependency chain.");
-            _instance = Object.Instantiate(Resources.Load(prefabResourcePath)).GetComponent<TDependency>();
             if (_instance == null)
                 throw new Exception(
                     $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");

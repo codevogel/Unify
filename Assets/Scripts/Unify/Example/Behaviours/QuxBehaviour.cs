@@ -1,6 +1,5 @@
 ﻿using Unify.Core;
 using Unify.Core.Attributes;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ namespace Unify.Example.Behaviours
 
         private void OnGUI()
         {
-            if (Selection.activeGameObject != this.GameObject()) return;
+            if (Selection.activeGameObject != this.gameObject) return;
             
             if (GUILayout.Button("Do something with the IBaz this QuxBehaviour depends on"))
                 DoSomething();
