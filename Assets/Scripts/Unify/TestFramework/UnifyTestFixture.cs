@@ -20,6 +20,17 @@ namespace Unify.TestFramework
             _rootInstaller.InjectDependenciesInto(SubInstallers);
         }
 
+        [TearDown]
+        public void Teardown()
+        {
+            _rootInstaller = null;
+        }
+
         protected abstract void AddSubInstallers();
+
+        public TObject Resolve<TObject>(string id = default)
+        {
+            return _rootInstaller.Resolve<TObject>(id);
+        }
     }
 }

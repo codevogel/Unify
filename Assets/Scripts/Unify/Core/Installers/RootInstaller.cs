@@ -13,7 +13,7 @@ namespace Unify.Core.Installers
     [DefaultExecutionOrder(-1)]
     public class RootInstaller
     {
-        private static UnifyContainer _root = new UnifyContainer();
+        private UnifyContainer _root = new UnifyContainer();
 
         public void RegisterInstallers(IEnumerable<IUnifyInstaller> installers)
         {
@@ -56,6 +56,11 @@ namespace Unify.Core.Installers
                     method.Invoke(objectToInject, dependencies);
                 }
             }
+        }
+
+        public TObject Resolve<TObject>(string id)
+        {
+            return (TObject) _root.ResolveDependency(typeof(TObject), id);
         }
     }
 }
