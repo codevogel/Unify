@@ -1,7 +1,7 @@
 ﻿using Unify.Core;
 using Unify.Core.Attributes;
 
-namespace Unify.Example.Tests.UsedInExampleTest
+namespace Unify.Example.UsedInExampleTest
 {
     public class FooMono : UnifyBehaviour
     {

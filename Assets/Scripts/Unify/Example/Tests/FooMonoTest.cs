@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using Unify.Example.Tests.UsedInExampleTest;
+using Unify.Example.UsedInExampleTest;
 using Unify.TestFramework;
 using UnityEngine;
 

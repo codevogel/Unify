@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Unify.Core.Factories.ObjectBuilder
+namespace Unify.Core.Builders.ObjectBuilder
 {
     public class UnifyObjectBuilder<TObject> : IObjectBuilder<TObject>
     {

@@ -1,4 +1,4 @@
-﻿namespace Unify.Core.Factories.ObjectBuilder
+﻿namespace Unify.Core.Builders.ObjectBuilder
 {
     public interface IObjectBuilder<out TObject>
     {

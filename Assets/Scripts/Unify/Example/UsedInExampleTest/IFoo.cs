@@ -1,4 +1,4 @@
-﻿namespace Unify.Example.Tests
+﻿namespace Unify.Example.UsedInExampleTest
 {
     public interface IFoo
     {
