@@ -1,0 +1,18 @@
+{
+    "name": "Unify.TestFramework",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d63e29ba772f0fe41887540c81533057"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

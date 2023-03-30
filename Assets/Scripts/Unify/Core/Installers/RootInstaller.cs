@@ -11,42 +11,26 @@ namespace Unify.Core.Installers
     /// In our project, we will use only a single instance of the RootInstaller.
     /// We can't make this installer static however, since it needs to inherit from MonoBehaviour.
     [DefaultExecutionOrder(-1)]
-    public class RootInstaller : UnifyMonoInstaller
+    public class RootInstaller
     {
-        private UnifyContainer Root => LocalContainer;
+        private static UnifyContainer _root = new UnifyContainer();
 
-        // Keeps track of a list of all BaseDependencyInstallers that need to be installed into the root container.
-        // We can assign these through the Unity Inspector.
-        public List<UnifyMonoInstaller> Installers;
-
-        public override void RegisterDependencies()
+        public void RegisterInstallers(IEnumerable<IUnifyInstaller> installers)
         {
-            foreach (var installer in Installers)
+            foreach (var installer in installers)
             {
                 // Registers each installers' local dependencies, then register that container into the root container.
                 installer.RegisterDependencies();
-                Root.RegisterDependenciesAndFactoriesFrom(installer.LocalContainer);
+                _root.RegisterDependenciesAndFactoriesFrom(installer.LocalContainer);
             }
         }
 
-        // This will be our entry point for our dependency injection framework.
-        // This function gets called and subsequently registers all the dependencies, then injects them into
-        // any UnifyBehaviours that need them.
-        public void InstallGame()
+        public void InjectDependenciesInto(IEnumerable<object> objects)
         {
-            RegisterDependencies();
-            InjectDependencies();
-        }
-
-        private void InjectDependencies()
-        {
-            // Find all UnifyBehaviours in the scene.
-            var unifyBehaviours = FindObjectsOfType<UnifyBehaviour>();
-
-            foreach (var unifyBehaviour in unifyBehaviours)
+            foreach (var objectToInject in objects)
             {
                 // Get all methods with the [Inject] attribute.
-                var injectMethods = unifyBehaviour.GetType()
+                var injectMethods = objectToInject.GetType()
                     .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                     .Where(m => m.GetCustomAttributes(typeof(InjectAttribute), true).Length > 0)
                     .ToList();
@@ -66,17 +50,12 @@ namespace Unify.Core.Installers
                         if (paramAttributes.Length > 1)
                             throw new Exception("Multiple InjectWithIdAttribute attributes found on a parameter in an inject function.");
                         var id = paramAttributes.Length == 1 ? ((InjectWithIdAttribute)paramAttributes[0]).ID : default;
-                        dependencies[i] = Root.ResolveDependency(param.ParameterType, id);
+                        dependencies[i] = _root.ResolveDependency(param.ParameterType, id);
                     }
 
-                    method.Invoke(unifyBehaviour, dependencies);
+                    method.Invoke(objectToInject, dependencies);
                 }
             }
-        }
-
-        private void Awake()
-        {
-            InstallGame();
         }
     }
 }
