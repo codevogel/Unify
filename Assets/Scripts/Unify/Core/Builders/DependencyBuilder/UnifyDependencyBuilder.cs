@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using NSubstitute;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Unify.Core.Builders.DependencyBuilder
 {
-    public class UnifyDependencyBuilder<TDependency> : IDependencyBuilder<TDependency>
+    public class UnifyDependencyBuilder<TDependency> : IDependencyBuilder<TDependency> where TDependency : class
     {
         private readonly Dictionary<UnifyDependency, object> _dependencies;
 
@@ -40,6 +41,16 @@ namespace Unify.Core.Builders.DependencyBuilder
                 throw new Exception(
                     "Called FromInstance when an instance already exists in this DefineDependency chain.");
             _instance = instance;
+            _fromInstanceSatisfied = true;
+            return this;
+        }
+
+        public IDependencyBuilder<TDependency> FromSubstitute()
+        {
+            if (_fromInstanceSatisfied)
+                throw new Exception(
+                    "Called FromSubstitute when an instance already exists in this DefineDependency chain.");
+            _instance = Substitute.For<TDependency>();
             _fromInstanceSatisfied = true;
             return this;
         }

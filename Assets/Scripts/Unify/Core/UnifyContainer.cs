@@ -12,7 +12,7 @@ namespace Unify.Core
         private Dictionary<UnifyDependency, object> _localDependencies = new ();
         public IEnumerable RegisteredObjects => _localDependencies.Values.ToArray();
 
-        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>()
+        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>() where TDependency : class
         {
             return new UnifyDependencyBuilder<TDependency>(_localDependencies);
         }

@@ -10,7 +10,7 @@ namespace Unify.Example.Tests
     {
         public override void RegisterDependencies()
         {
-            DefineDependency<IFoo>().FromInstance(Substitute.For<IFoo>()).Register();
+            DefineDependency<IFoo>().FromSubstitute().Register();
             DefineDependency<FooMono>().FromInstance(new GameObject().AddComponent<FooMono>()).Register();
         }
     }

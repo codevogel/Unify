@@ -10,7 +10,7 @@ namespace Unify.Core.Installers
         // A unify installer needs to be able to register dependencies.
         public void RegisterDependencies();
 
-        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>();
+        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>() where TDependency : class;
 
     }
 }

@@ -7,7 +7,7 @@ namespace Unify.Core.Installers
     {
         public UnifyContainer LocalContainer { get; } = new UnifyContainer();
         public abstract void RegisterDependencies();
-        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>()
+        public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>() where TDependency : class
         {
             return LocalContainer.DefineDependency<TDependency>();
         }
