@@ -17,7 +17,7 @@ namespace Unify.TestFramework
             AddSubInstallers();
             _rootInstaller = new RootInstaller();
             _rootInstaller.RegisterInstallers(SubInstallers);
-            _rootInstaller.InjectDependenciesInto(SubInstallers);
+            _rootInstaller.InjectDependencies();
         }
 
         [TearDown]

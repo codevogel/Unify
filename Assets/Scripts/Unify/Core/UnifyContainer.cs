@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unify.Core.Builders.DependencyBuilder;
 using Unify.Core.Factories;
 
@@ -8,6 +10,7 @@ namespace Unify.Core
     public class UnifyContainer : IUnifyContainer
     {
         private Dictionary<UnifyDependency, object> _localDependencies = new ();
+        public IEnumerable RegisteredObjects => _localDependencies.Values.ToArray();
 
         public UnifyDependencyBuilder<TDependency> DefineDependency<TDependency>()
         {

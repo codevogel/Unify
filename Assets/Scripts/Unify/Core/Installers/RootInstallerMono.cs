@@ -11,7 +11,7 @@ namespace Unify.Core.Installers
         private void Awake()
         {
             RootInstaller.RegisterInstallers(monoInstallers);
-            RootInstaller.InjectDependenciesInto(FindObjectsOfType<UnifyBehaviour>());
+            RootInstaller.InjectDependencies();
         }
     }
 }

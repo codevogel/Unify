@@ -25,9 +25,9 @@ namespace Unify.Core.Installers
             }
         }
 
-        public void InjectDependenciesInto(IEnumerable<object> objects)
+        public void InjectDependencies()
         {
-            foreach (var objectToInject in objects)
+            foreach (var objectToInject in _root.RegisteredObjects)
             {
                 // Get all methods with the [Inject] attribute.
                 var injectMethods = objectToInject.GetType()
