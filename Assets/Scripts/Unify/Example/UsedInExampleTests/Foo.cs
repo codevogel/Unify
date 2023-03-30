@@ -1,4 +1,4 @@
-﻿namespace Unify.Example.UsedInExampleTest
+﻿namespace Unify.Example.UsedInExampleTests
 {
     public class Foo : IFoo
     {

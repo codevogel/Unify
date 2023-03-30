@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Unify.Example.UsedInExampleTest;
+using Unify.Example.UsedInExampleTests;
 using Unify.TestFramework;
 
 namespace Unify.Example.Tests
