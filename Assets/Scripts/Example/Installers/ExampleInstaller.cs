@@ -25,8 +25,7 @@ namespace Example.Installers
             LocalContainer.DefineDependency<FooBehaviour>().FromInstance(FooBehaviourInHierarchy).WithId("fromHierarchy").Register();
 
             // Create FooBehaviour from installer and register it with id "fromCode" 
-            var fooBehaviourFromCode = new GameObject("FooBehaviour From Code").AddComponent<FooBehaviour>();
-            LocalContainer.DefineDependency<FooBehaviour>().FromInstance(fooBehaviourFromCode).WithId("fromCode").Register();
+            LocalContainer.DefineDependency<FooBehaviour>().FromComponentOnNewGameObject("FooBehaviour From Code").WithId("fromCode").Register();
             
             // Create a BarBehaviour that has it's own dependencies (we've registered it's dependencies above)
             var barBehaviour = new GameObject("BarBehaviourWithDependency").AddComponent<BarBehaviour>();
