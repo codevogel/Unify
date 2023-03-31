@@ -4,7 +4,7 @@ namespace Installers
     {
         public override void RegisterDependencies()
         {
-            // Register dependencies using LocalContainer.DefineDependency<TDependency>().<Builder Calls>.Register();
+            // Register dependencies using DefineDependency<TDependency>().<Builder Calls>.Register();
         }
     }
 }

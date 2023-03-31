@@ -4,6 +4,7 @@ using Plugins.Unify.Core.Factories;
 
 namespace Example.Factories
 {
+    // You must pass the type of behaviour that this Factory creates to BaseUnifyObjectFactory. 
     public class #SCRIPTNAME# : BaseUnifyObjectFactory<TUnifyBehaviour>
     {
         // A manual override of the injection method is required for factories.
