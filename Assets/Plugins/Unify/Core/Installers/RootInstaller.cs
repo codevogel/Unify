@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,7 +28,14 @@ namespace Plugins.Unify.Core.Installers
 
         public void InjectDependencies()
         {
-            foreach (var objectToInject in _root.RegisteredObjects)
+            // TODO: This can result into injecting dependencies twice
+            InjectDependenciesInto(_root.RegisteredObjects);
+            InjectDependenciesInto(UnityEngine.Object.FindObjectsOfType<UnifyBehaviour>());
+        }
+
+        private void InjectDependenciesInto(IEnumerable objects)
+        {
+            foreach (var objectToInject in objects)
             {
                 // Get all methods with the [Inject] attribute.
                 var injectMethods = objectToInject.GetType()
