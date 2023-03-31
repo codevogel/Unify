@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Codice.CM.SEIDInfo;
 using NSubstitute;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -18,6 +17,9 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
         // Dependency variables
         private TDependency _instance;
         private string _id;
+        private readonly bool _dependencyIsInterface;
+
+        private Type _typeConcrete;
 
         /// <summary>
         /// The UnifyDependencyBuilder builds a dependency using the builder pattern.
@@ -28,6 +30,7 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
         public UnifyDependencyBuilder(Dictionary<UnifyDependency, object> dependencies)
         {
             _dependencies = dependencies;
+            _dependencyIsInterface = typeof(TDependency).IsInterface;
         }
 
         #region Instance Creation
@@ -35,7 +38,11 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
         {
             AssertInstanceIsNull("FromComponentOnNewGameObject");
 
-            _instance = new GameObject(name).AddComponent(typeof(TDependency)) as TDependency;
+            if (_dependencyIsInterface)
+                _instance = new GameObject(name).AddComponent(_typeConcrete) as TDependency;
+            else 
+                _instance = new GameObject(name).AddComponent(typeof(TDependency)) as TDependency;
+            
             if (_instance == null)
                 throw new Exception(
                     $"Component with type {typeof(TDependency)} resulted in a null object when added as a component. Are you sure you are registering a component type dependency?");
@@ -99,6 +106,14 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
             if (_instance != null)
                 throw new Exception(
                     $"Called {callerName} when an instance already exists in this DefineDependency chain.");
+        }
+
+        public IDependencyBuilder<TDependency> AsInterfaceTo<TConcrete>()
+        {
+            if (!_dependencyIsInterface)
+                throw new Exception($"Called AsInterFaceTo<{typeof(TConcrete)}> but {typeof(TDependency)} is not an interface");
+            _typeConcrete = typeof(TConcrete);
+            return this;
         }
     }
 }

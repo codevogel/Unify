@@ -1,0 +1,10 @@
+namespace Installers
+{
+    public class #SCRIPTNAME# : UnifyMonoInstaller
+    {
+        public override void RegisterDependencies()
+        {
+            // Register dependencies using LocalContainer.DefineDependency<TDependency>().<Builder Calls>.Register();
+        }
+    }
+}

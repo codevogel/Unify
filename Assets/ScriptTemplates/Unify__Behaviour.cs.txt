@@ -1,0 +1,11 @@
+using Plugins.Unify.Core;
+using UnityEditor;
+using UnityEngine;
+
+namespace Behaviours
+{
+    public class #SCRIPTNAME# : UnifyBehaviour
+    {
+        // Mark your injection method with the [Inject] attribute.
+    }
+}

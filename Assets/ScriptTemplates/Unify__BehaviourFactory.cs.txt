@@ -1,0 +1,16 @@
+using Example.Behaviours;
+using Plugins.Unify.Core.Attributes;
+using Plugins.Unify.Core.Factories;
+
+namespace Example.Factories
+{
+    public class #SCRIPTNAME# : BaseUnifyObjectFactory<TUnifyBehaviour>
+    {
+        // A manual override of the injection method is required for factories.
+        protected override void InjectDependenciesInto(TUnifyBehaviour o)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
+}

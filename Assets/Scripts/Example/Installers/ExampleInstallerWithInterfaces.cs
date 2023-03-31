@@ -15,14 +15,14 @@ namespace Example.Installers
 
         public override void RegisterDependencies()
         {
-            // Create an instance of Baz behaviour and reference it through the interface IBaz
+            // Two ways of defining an IBaz dependency as a concrete implementation of BazBehaviour:
             var bazBehaviour = new GameObject("Baz behaviour").AddComponent<BazBehaviour>();
-            LocalContainer.DefineDependency<IBaz>().FromInstance(bazBehaviour).Register();
-
+            DefineDependency<IBaz>().FromInstance(bazBehaviour).Register();
+            // or:
+            DefineDependency<IBaz>().AsInterfaceTo<BazBehaviour>().FromComponentOnNewGameObject().WithId("otherMethod").Register();
             
             // Create an instance of Qux behaviour and register it.
-            var quxBehaviour = new GameObject("Qux behaviour").AddComponent<QuxBehaviour>();
-            LocalContainer.DefineDependency<QuxBehaviour>().FromInstance(quxBehaviour).Register();
+            DefineDependency<QuxBehaviour>().FromComponentOnNewGameObject("Qux Behaviour").Register();
         }
     }
 }

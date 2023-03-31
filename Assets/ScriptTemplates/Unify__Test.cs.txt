@@ -1,0 +1,23 @@
+using NUnit.Framework;
+using Plugins.Unify.TestFramework;
+
+namespace Tests
+{
+    public class #SCRIPTNAME#Installer : UnifyTestInstaller
+    {
+        public override void RegisterDependencies()
+        {
+            // Register dependencies using DefineDependency<TDependency>().<Builder Calls>.Register();
+        }
+    }
+    
+    public class #SCRIPTNAME# : UnifyTestFixture
+    {
+        protected override void AddSubInstallers()
+        {
+            SubInstallers.Add(new #SCRIPTNAME#Installer());
+        }
+        
+        // Resolve dependencies in tests marked with [Test] using Resolve<TDependency>
+    }
+}
