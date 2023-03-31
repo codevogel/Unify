@@ -42,11 +42,11 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
             return this;
         }
 
-        public IDependencyBuilder<TDependency> FromPrefab(GameObject dependencyOnAPrefab)
+        public IDependencyBuilder<TDependency> FromPrefab(GameObject gameObjectWithDependencyAttached)
         {
             AssertInstanceIsNull("FromPrefab");
 
-            _instance = Object.Instantiate(dependencyOnAPrefab).GetComponent<TDependency>();
+            _instance = Object.Instantiate(gameObjectWithDependencyAttached).GetComponent<TDependency>();
             if (_instance == null)
                 throw new Exception(
                     $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");
