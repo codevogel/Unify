@@ -1,6 +1,7 @@
 ﻿using Example.Behaviours;
 using Example.Factories;
 using Plugins.Unify.Core.Installers;
+using UnityEngine;
 
 namespace Example.Installers
 {
@@ -18,8 +19,9 @@ namespace Example.Installers
             // Register a factory that instantiates BarBehaviours
             DefineDependency<BarBehaviourFactory>().FromInstance(new BarBehaviourFactory()).Register();
             
-            // Register the behaviour that will use the BarDependencyFactory to instantiate BarBehaviours.
-            DefineDependency<BarFactoryBehaviour>().FromPrefab(BarFactoryBehaviourPrefab.gameObject).Register();
+            // Two ways to register the BarFactoryBehaviour from a prefab:
+            DefineDependency<BarFactoryBehaviour>().FromPrefabResource(Resources.Load("Prefabs/BarFactoryBehaviourPrefab")).Register();
+            //DefineDependency<BarFactoryBehaviour>().FromPrefab(BarFactoryBehaviourPrefab.gameObject).WithId("otherMethod").Register();
         }
     }
 }

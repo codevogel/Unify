@@ -32,6 +32,36 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
             _dependencies = dependencies;
             _dependencyIsInterface = typeof(TDependency).IsInterface;
         }
+        
+        public IDependencyBuilder<TDependency> FromComponentOnGameObject(GameObject gameObject, string name = default)
+        {
+            AssertInstanceIsNull("FromComponentOnGameObject");
+
+            if (_dependencyIsInterface)
+                _instance = gameObject.GetComponent(_typeConcrete) as TDependency;
+            else 
+                _instance = gameObject.GetComponent(typeof(TDependency)) as TDependency;
+            
+            if (_instance == null)
+                throw new Exception(
+                    $"Component with type {typeof(TDependency)} resulted in a null object when added as a component. Are you sure you are registering a component type dependency?");
+            return this;
+        }
+
+        public IDependencyBuilder<TDependency> FromComponentOn<TComponent>(TComponent component, string name = default) where TComponent : Component
+        {
+            AssertInstanceIsNull($"FromComponentOn<{typeof(TComponent)}>");
+
+            if (_dependencyIsInterface)
+                _instance = component.GetComponent(_typeConcrete) as TDependency;
+            else 
+                _instance = component.GetComponent(typeof(TDependency)) as TDependency;
+            
+            if (_instance == null)
+                throw new Exception(
+                    $"Component with type {typeof(TDependency)} resulted in a null object when added as a component. Are you sure you are registering a component type dependency?");
+            return this;
+        }
 
         #region Instance Creation
         public IDependencyBuilder<TDependency> FromComponentOnNewGameObject(string name = default)
@@ -113,6 +143,17 @@ namespace Plugins.Unify.Core.Builders.DependencyBuilder
             if (!_dependencyIsInterface)
                 throw new Exception($"Called AsInterFaceTo<{typeof(TConcrete)}> but {typeof(TDependency)} is not an interface");
             _typeConcrete = typeof(TConcrete);
+            return this;
+        }
+
+        public IDependencyBuilder<TDependency> FromPrefabResource(Object prefab)
+        {
+            AssertInstanceIsNull("FromPrefabResource");
+
+            _instance = (Object.Instantiate(prefab) as GameObject)?.GetComponent<TDependency>();
+            if (_instance == null)
+                throw new Exception(
+                    $"Query with prefab resource path for type {typeof(TDependency)} resulted in a null object. Are you sure this prefab has that component attached?");
             return this;
         }
     }
