@@ -19,17 +19,17 @@ namespace Example.Installers
         public override void RegisterDependencies()
         {
             // Register a string instance from the inspector
-            LocalContainer.DefineDependency<string>().FromInstance(SomeStringDependency).Register();
+            DefineDependency<string>().FromInstance(SomeStringDependency).Register();
 
             // Register a FooBehaviour instance from the inspector with id "fromHierarchy"
-            LocalContainer.DefineDependency<FooBehaviour>().FromInstance(FooBehaviourInHierarchy).WithId("fromHierarchy").Register();
+            DefineDependency<FooBehaviour>().FromInstance(FooBehaviourInHierarchy).WithId("fromHierarchy").Register();
 
             // Create FooBehaviour from installer and register it with id "fromCode" 
-            LocalContainer.DefineDependency<FooBehaviour>().FromComponentOnNewGameObject("FooBehaviour From Code").WithId("fromCode").Register();
+            DefineDependency<FooBehaviour>().FromComponentOnNewGameObject("FooBehaviour From Code").WithId("fromCode").Register();
             
             // Create a BarBehaviour that has it's own dependencies (we've registered it's dependencies above)
             var barBehaviour = new GameObject("BarBehaviourWithDependency").AddComponent<BarBehaviour>();
-            LocalContainer.DefineDependency<BarBehaviour>().FromInstance(barBehaviour).Register();
+            DefineDependency<BarBehaviour>().FromInstance(barBehaviour).Register();
         }
     }
 }
