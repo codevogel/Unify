@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [Test]
-        public void TakeDamageDelegatesToHumbleObject()
+        public void TakeDamageDelegatesToFoo()
         {
             var fooMono = Resolve<FooMono>();
             fooMono.TakeDamage(3);
