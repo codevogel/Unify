@@ -19,7 +19,7 @@ namespace Example.Installers
             var bazBehaviour = new GameObject("Baz behaviour").AddComponent<BazBehaviour>();
             DefineDependency<IBaz>().FromInstance(bazBehaviour).Register();
             // or:
-            DefineDependency<IBaz>().AsInterfaceTo<BazBehaviour>().FromComponentOnNewGameObject().WithId("otherMethod").Register();
+            // DefineDependency<IBaz>().AsInterfaceTo<BazBehaviour>().FromComponentOnNewGameObject().WithId("otherMethod").Register();
             
             // Create an instance of Qux behaviour and register it.
             DefineDependency<QuxBehaviour>().FromComponentOnNewGameObject("Qux Behaviour").Register();
